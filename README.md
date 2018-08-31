@@ -1,4 +1,4 @@
-# NewPortal Project
+# NewsPortal Project
 
 이 프로젝트는 뉴스 기사의 수집 검색을 위한 샘플 프로젝트이다.
 
