@@ -18,6 +18,23 @@
 * Docker 18.06.1-ce
 
 
+## .env
+
+docker-compose.yml 파일에서 패스워드와 같이 민감한 내용 또는 환경에 따라 바뀔수 있는 내용은 별도의 파일에 기술한다.
+
+docker-compose.yml과 동일한 경로에 .env파일을 생성한 후 gitigonre에 등록하여 git에 공개되지 않도록 한다.
+
+이 프로젝트에서는 .env에 다음 내용이 필요하다.
+
+```
+# 몽고디비 데이터 로컬 저장 경로
+MONGODB_DATA_PATH=/your path
+
+# 엘라스틱서치 데이터 로컬 저장 경로
+ELASTICSEARCH_DATA_PATH=/your path
+```
+
+
 ## docker-compose
 ```
 docker-compose up --build
