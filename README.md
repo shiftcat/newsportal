@@ -22,7 +22,7 @@
 
 docker-compose.yml 파일에서 패스워드와 같이 민감한 내용 또는 환경에 따라 바뀔수 있는 내용은 별도의 파일에 기술한다.
 
-docker-compose.yml과 동일한 경로에 .env파일을 생성한 후 gitigonre에 등록하여 git에 공개되지 않도록 한다.
+docker-compose.yml과 동일한 경로에 .env파일을 생성한 후 gitignore에 등록하여 git에 공개되지 않도록 한다.
 
 이 프로젝트에서는 .env에 다음 내용이 필요하다.
 
