@@ -1,0 +1,67 @@
+{
+    "settings" : {
+        "index":{
+            "analysis":{
+                "analyzer":{
+                    "korean":{
+                        "type":"custom",
+                        "tokenizer":"seunjeon_default_tokenizer"
+                    }
+                },
+                "tokenizer": {
+                    "seunjeon_default_tokenizer": {
+                        "index_eojeol": "false",
+                        "index_poses": [
+                                        "UNK",
+                                        "EP",
+                                        "I",
+                                        "J",
+                                        "M",
+                                        "N",
+                                        "SL",
+                                        "SH",
+                                        "SN",
+                                        "VCP",
+                                        "XP",
+                                        "XS",
+                                        "XR"
+                        ],
+                        "type": "seunjeon_tokenizer"
+                    }
+                }
+            }
+        }
+    },
+    "mappings": {
+        "article": {
+            "properties": {
+                "subject": {"type": "text", "analyzer": "korean", "fielddata": "true"},
+                "content": {"type": "text", "analyzer": "korean"},
+                "repoter": {
+                    "type": "text",
+                    "fielddata": "true"
+                },
+                "images": {
+                    "type": "nested",
+                    "properties": {
+                        "src": {"type": "text"},
+                        "alt": {"type": "text"}
+                    }
+                }, 
+                "date": {
+                    "properties": {
+                        "first_ins": {"type": "date", "format": "yyyy.MM.dd HH:mm:ss"},
+                        "last_upd": {"type": "date", "format": "yyyy.MM.dd HH:mm:ss"}
+                    }
+                },
+                "wordcount": {
+                    "type": "nested",
+                    "properties": {
+                        "word": {"type": "text"},
+                        "count": {"type": "long"}
+                    }
+                }
+            }
+        }
+    }
+}

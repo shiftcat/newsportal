@@ -1,0 +1,53 @@
+version: '3'
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - '27027:27017'
+    volumes:
+      - '${MONGODB_DATA_PATH}:/data/db'
+
+  elasticsearch:
+    container_name: elasticsearch
+    build: ./newselas
+    image: elasticsearch:6.1.1
+    ports:
+      - '9200:9200'
+    volumes:
+      - '${ELASTICSEARCH_DATA_PATH}:/elas/data'
+
+  newsfinder:
+    container_name: newsfinder
+    build: ./newsfinder
+    image: newsfinder:latest
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongodb
+      - elasticsearch
+    links:
+      - mongodb
+      - elasticsearch
+    environment:
+      - MONGO_SERVER=mongodb
+      - MONGO_PORT=27017
+      - ELASTICSEARCH_SERVER=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - SERVER_PORT=8080
+
+  newscrawler:
+    container_name: newscrawler
+    build: ./newscrawler
+    image: newscrawler:latest
+    depends_on:
+      - mongodb
+      - elasticsearch
+    links:
+      - mongodb
+      - elasticsearch
+    environment:
+      - MONGO_SERVER=mongodb
+      - MONGO_PORT=27017
+      - ELASTICSEARCH_SERVER=elasticsearch
+      - ELASTICSEARCH_PORT=9200

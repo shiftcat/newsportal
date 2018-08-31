@@ -1,0 +1,8 @@
+APScheduler==3.5.2
+beautifulsoup4==4.6.1
+elasticsearch==6.3.0
+gensim==3.5.0
+JPype1==0.6.3
+konlpy==0.5.1
+pymongo==3.7.1
+Scrapy==1.5.1

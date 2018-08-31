@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <p></p>
+    <p>
+        {{ status }}
+    </p>
+
+    {% for item in articles %}
+        <div>
+           <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        <a href="{{ item['url'] }}" target="_new"> {{ item['subject'] }}</a>
+                    </h3>
+                </div>
+            </div>
+
+            {% if item['images'] %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                      <img src="{{ item['images'][0]['src'] }}" alt="{{  item['images'][0]['alt'] }}">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    {{ item['sumarry'] }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ item['repoter'] }}
+                </div>
+                <div class="col-md-6">
+                     <p class="text-right">
+                         {{ item.date.first_ins }}
+                     </p>
+                </div>
+            </div>
+            {% else %}
+            <div class="row">
+                <div class="col-md-12">
+                    {{ item['sumarry'] }}
+                   <div class="row">
+                        <div class="col-md-6">
+                            {{ item['repoter'] }}
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-right">
+                                {{ item.date.first_ins }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <p></p>
+    {% endfor %}
+
+    {% include 'page_nav.html' %}
+
+{% endblock %}

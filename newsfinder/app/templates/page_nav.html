@@ -1,0 +1,30 @@
+    <nav>
+      <ul class="pagination">
+
+      {% if prev_page %}
+        <li>
+          <a href="{{ prev_page }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+
+      {% for pg in pages %}
+        {% if pg.page_num == current_page %}
+            <li class="active"><a href="{{ pg.url }}">{{pg.page_num}}</a></li>
+        {% else %}
+            <li><a href="{{ pg.url }}">{{pg.page_num}}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if next_page %}
+        <li>
+          <a href="{{ next_page }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      </ul>
+    </nav>

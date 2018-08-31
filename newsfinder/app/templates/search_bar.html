@@ -1,0 +1,58 @@
+
+{% block search_bar %}
+    <script type="text/javascript">
+        function button_click()
+        {
+            fmSearch.submit()
+        }
+    </script>
+
+    <form name="fmSearch" method="get" action="/search">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="input-group">
+                    <input type="search" name="q" class="form-control" placeholder="Search for..." value="{{ input_data.get_param('q', '') }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="button_click();">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-inline">
+                    <label class="control-label"> 기간:
+                         <input type="date" name="start_dt" class="form-control" value="{{ input_data.get_param('start_dt', '')  }}" /> ~
+                        <input type="date" name="end_dt" class="form-control" value="{{ input_data.get_param('end_dt', '')  }}" />
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                 <div class="input-group">
+                    <input type="text" name="repoter" class="form-control" placeholder="기자" value="{{ input_data.get_param('repoter', '') }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-inline">
+                    <label class="control-label">
+                        정렬:
+                        <input type="radio" name="sort" value="default" {{ input_data.get_check_param('sort', 'default', 'default') }} /> <label>기본</label>
+                        <input type="radio" name="sort" value="date" {{ input_data.get_check_param('sort', 'date') }} /> <label>날짜</label>
+                        <input type="radio" name="sort" value="subject" {{ input_data.get_check_param('sort', 'subject') }} /> <label>제목</label>
+                        <input type="radio" name="sort" value="repoter" {{ input_data.get_check_param('sort', 'repoter') }} /> <label>기자</label>
+                    </label>
+
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-inline">
+                    <label class="control-label">
+                        <input type="checkbox" name="operator" value="on" {{ input_data.get_check_param('operator', 'on') }}  />and
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
