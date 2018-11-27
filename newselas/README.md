@@ -7,6 +7,12 @@
 **도커가 설치된 컴에서 다음 명령어를 실행한다.**
 ```
 sudo sysctl -w vm.max_map_count=262144
+
+위 설정은 1 회성이다. 
+영구적으로 하려면 /etc/sysctl.conf 파일에 아래 내용 추가.
+
+vm.max_map_count=262144
+
 ```
 
 
